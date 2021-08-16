@@ -28,10 +28,7 @@ function gotposes(results) {
 }
 function draw() {
     background ('#d627c5');
+    textsize(difference)
     fill('#eaff00');
-    stroke('#eaff00');
-    square(noseX,noseY,difference);
-    document.getElementById ("square_side").innerHTML = "WIDTH AND HEIGHT OF THE SQUARE WILL BE " + difference + " Px";
+   text('Peter',50,400)
 }
-
-
