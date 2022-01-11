@@ -1,29 +1,42 @@
-leftwristX= 0;
-rightwristX= 0;
-difference= 0;
-function setup () {
-    video= createCapture(VIDEO);
-    video.size(550,500);
-    canvas= createCanvas(550,550);
-    canvas.position(560,150);
-    poseNet= ml5.poseNet(video, modelLoaded);
-    poseNet.on('pose', gotposes);
+difference = 0;
+rightWristX = 0;
+leftWristX = 0;
+
+  function setup() {
+  video = createCapture(VIDEO);
+  video.size(550, 500);
+
+  canvas = createCanvas(550, 550);
+  canvas.position(560,150);
+
+  poseNet = ml5.poseNet(video, modelLoaded);
+  poseNet.on('pose', gotPoses);
 }
+
 function modelLoaded() {
-    console.log('PoseNet is intialized!');
+  console.log('PoseNet Is Initialized!');
 }
-function gotposes(results) {
-     if (results.length > 0) {
-         console.log (results);
-         leftwristX= results[0].pose.leftWrist.x;
-         rightwristX= results[0].pose.rightWrist.x;
-         difference = floor(leftwristX - rightwristX);
-         console.log("leftwristX="+ leftwristX + "rightwristX=" + rightwristX);
-     }
+
+
+function gotPoses(results)
+{
+  if(results.length > 0)
+  {
+    console.log(results);
+
+    leftWristX = results[0].pose.leftWrist.x;
+    rightWristX = results[0].pose.rightWrist.x;
+    difference = floor(leftWristX - rightWristX);
+
+    console.log("leftWristX  = " + leftWristX  + " rightWristX = "+ rightWristX + " difference = " + difference);
+  }
 }
+
 function draw() {
-    background ('#6C91C2');
-    textsize(difference)
-    fill('#FFE787');
-    text('Niravro',50,400);
+background('#6C91C2');
+
+  document.getElementById("font_size").innerHTML = "Font size of the text will be = " + difference +"px";
+textSize(difference);
+fill('#FFE787');
+text('Niarvro', 50, 400);
 }
